@@ -16,7 +16,7 @@ def run_pipeline(input_file, progress_bar):
     infile = str(os.path.basename(input_file)).replace(" ","\ ")
 
     # Output folder
-    output_directory = f"{input_file}.split"
+    output_directory = f"{input_file}.split".replace("/","\\")
 
     # Change to the input file's directory
     os.chdir(input_directory)

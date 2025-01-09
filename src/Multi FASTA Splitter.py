@@ -13,7 +13,7 @@ def run_pipeline(input_file, progress_bar):
     input_directory = os.path.dirname(input_file)
 
     # Select input file
-    infile = os.path.basename(input_file)
+    infile = str(os.path.basename(input_file)).replace(" ","\ ")
 
     # Output folder
     output_directory = f"{input_file}.split"

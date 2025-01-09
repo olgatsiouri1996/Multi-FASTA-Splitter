@@ -1,4 +1,3 @@
-import os
 import threading
 import subprocess
 import tkinter as tk
@@ -9,23 +8,14 @@ def run_pipeline(input_file, progress_bar):
     # Start the progress bar
     progress_bar.start()
 
-    # Select input directory
-    input_directory = os.path.dirname(input_file)
-
-    # Select input file
-    infile = str(os.path.basename(input_file)).replace(" ","\ ")
-
     # Output folder
     output_directory = f"{input_file}.split".replace("/","\\")
 
-    # Change to the input file's directory
-    os.chdir(input_directory)
-
     # Run command
-    command = f"seqkit split -i --by-id-prefix \"\"  {infile}"
+    command = f"seqkit split -i --by-id-prefix \"\"  \"{input_file}\""
     
     try:
-        subprocess.run(["wsl", "bash", "-c", command], check=True, creationflags=subprocess.CREATE_NO_WINDOW)
+        subprocess.run(command, check=True, creationflags=subprocess.CREATE_NO_WINDOW)
         progress_bar.stop()
         messagebox.showinfo("Success", f"Output files created at {output_directory}")
 
